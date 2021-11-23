@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nav Bar Prototype - By Kyle Sicotte</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+	<!--
+
+	Hey you!
+
+	I'd like to thank you for downloading my content. It really means a lot to me!
+	Hope you enjoy it. If you need any help working with this code, or have any suggestions for improvements or future code,
+	feel free to contact me at kylesicotte.ca.
+
+	Cheers,
+
+	- Kyle Sicotte
+
+	Notes:
+	Please forgive me for how janky this code is in some parts *cough* *cough* *duplicated html nav*.
+	I made this awhile back, just as a proof of concept for the mobile nav styling.
+	This was never meant to get uploaded to my github, so I apologize if you can't figure out what's going on, 
+	because the only two people on Earth that actually know what's going on here are past Kyle and god himself.
+	Good luck!
+
+	 -->
+	<style type="text/css">
+		/* ANIMATIONS */
+		@keyframes navbar-runner {
+		  0%   {height: 0;}
+		  25%  {height: -100vh;}
+		  100% {height: 0;}
+		}
+
+		/* MAIN STYLING */
+		body {
+			margin: 0;
+		}
+		/* Mobile - 320px to 560px */
+		.mobileNav {		
+			background: rgb(117,7,125);
+			background: linear-gradient(150deg, rgba(117,7,125,1) 35%, rgba(255,254,210,1) 100%);
+			display: flex;
+			z-index: 1;
+			flex-wrap: wrap;
+			height: 100vh;
+			width: 100vw;
+			transform: translateY(96vh);
+			position: fixed;
+			top: 0;
+			transition: ease-in-out .3s;
+		}
+		.mobileNav .icon {
+			z-index: 2;
+			width: auto;
+			background-color: #75077D;
+			margin: -16vh 0;
+			padding: 0 5vw;
+			transition: ease-in-out .3s;
+			max-height: 20vh;
+		}
+		.mobileNav .arrow {
+			margin: 4vw auto;
+		    width: 0;
+		    height: 0;
+		    border: solid 6vw;
+			transition: ease-in-out .3s;
+		}
+		.mobileNav .up {
+			border-top: 1px;
+		    border-color: transparent transparent white transparent;
+		}
+		.mobileNav .down {			
+			border-bottom: 1px;
+		    border-color: white transparent transparent transparent;
+		}
+		.mobileNav .bar {
+			width: 16vw;
+			height: 4vw;
+			background-color: #fff;
+			margin: 2vw 0;
+			border-radius: 4vw;
+		}
+
+		.mobileNav .content {
+			display: block;
+			width: 100vw;
+			padding: 0 5vw;
+			margin-top: 0;
+		}
+		.mobileNav h1 {
+			font-family: sans-serif;
+			color: #fff;
+			font-size: 3.2rem;
+			font-weight: 700;
+			margin: 30px 0;
+		}
+		.mobileNav a {
+			color: #fff;
+			text-decoration: none;
+		}
+		.mobileNav ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.mobileNav li {
+			padding: 0;
+			margin: 0;
+			font-size: 2.4rem;
+		}
+		.mobileNav p {
+			font-size: 1rem;
+			color: #75077D;
+			text-align: center;
+			width: 100%;
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			font-family: sans-serif;
+		}
+
+		.mobileNav .hide {
+			border-color: transparent;
+		}
+		.mobileNav.move {
+			transition: ease-in-out .3s;
+			transform: translateY(0);
+		}
+		.mobileNav.move .icon {
+			transition: ease-in-out .3s;
+			transform: translateY(12vh);
+			background-color: transparent;
+		}
+
+
+		/* Desktop */
+		.desktopNav {
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			width: 100vw;
+			background-color: #75077D;
+			display: none;
+			box-shadow: 0 3px 8px #555;
+		}
+		.desktopNav > div {
+			box-sizing: border-box;
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			max-width: 2000px;
+			padding: 0 100px;
+		}
+		.desktopNav h1 {
+			display: flex;
+			align-items: center;
+			font-family: sans-serif;
+		}
+		.desktopNav a {
+			color: #fff;
+			text-decoration: none;
+		}
+		.desktopNav .icon {
+			display: block;
+			background-color: transparent;
+			width: auto;
+			padding: 20px;
+		}
+		.desktopNav .bar {
+			display: block;
+			width: 60px;
+			height: 10px;
+			margin: auto;
+			margin-top: 8px;
+			background-color: #fff;
+			border-radius: 10px;
+		}
+		.desktopNav .bar:first-child {
+			margin-top: 0;
+		}
+		.desktopNav .dropdown {
+			display: none;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			position: absolute;
+			right: 120px;
+			background-color: #42005E;
+			padding: 20px 50px 25px 30px;			
+			box-shadow: 3px 1px 8px #555;
+		}
+		.desktopNav .dropdown a {
+			color: #d8d8d8;
+			line-height: 1.8;
+			font-size: 1.4rem;
+			display: block;
+		}
+		.desktopNav .dropdown a:hover {
+			text-decoration: underline;
+		}
+		.desktopNav .dropped {
+			display: block;
+			width: auto;
+		}
+
+		/* MEDIA QUERRIES */
+		@media only screen  
+		  and (max-width: 480px)
+		   {			
+			.mobileNav {
+				display: flex;
+			}
+			.desktopNav {
+				display: none;
+			}
+
+		}
+		@media only screen 
+		  and (min-width: 480px) 
+		  and (max-width: 960px)  {			
+			.mobileNav {
+				display: none;
+			}
+			.desktopNav {
+				display: block;
+			}
+		}
+		@media only screen 
+		  and (min-width: 960px)
+		   {			
+			.mobileNav {
+				display: none;
+			}
+			.desktopNav {
+				display: flex;
+			}
+			.desktopNav .icon {
+				display: none;
+			}
+			.desktopNav .dropdown {
+				position: static;
+				display: flex;
+				background-color: transparent;
+				box-shadow: none;
+			}
+			.desktopNav a {
+				margin-right: 20px;
+			}
+			.desktopNav li:last-child a {
+				margin-right: 0;
+			}
+		}
+	</style>
+
+	<nav class="mobileNav">
+		<div class="icon">
+			<div class="arrow up"></div>
+			<div class="bar"></div>
+			<div class="bar"></div>
+			<div class="bar"></div>
+			<div class="arrow down hide"></div>
+		</div>
+		<div class="content">
+			<h1><a href="">Header</a></h1>
+			<ul>
+			<li><a href="">Home</a></li>
+			<li><a href="">Tours</a></li>
+			<li><a href="">Albums</a></li>
+			<li><a href="">Concerts</a></li>			
+			</ul>
+			<p>Made by Kyle Sicotte</p>
+		</div>
+	</nav>
+	<nav class="desktopNav">		
+		<div>
+			<h1><a href="">Header</a></h1>			
+			<div class="icon">
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+			</div>
+		</div>
+		<ul class="dropdown">
+			<li><a href="">Home</a></li>
+			<li><a href="">Tours</a></li>
+			<li><a href="">Albums</a></li>
+			<li><a href="">Concerts</a></li>			
+			</ul>
+	</nav>
+	<script type="text/javascript">
+		document.querySelector('.mobileNav .icon').addEventListener("click", ()=>{
+			document.querySelector('.up').classList.toggle('hide');
+			document.querySelector('.down').classList.toggle('hide');
+			document.querySelector('.mobileNav').classList.toggle('move');
+		});
+		document.querySelector('.desktopNav .icon').addEventListener("click", ()=>{
+			document.querySelector('.dropdown').classList.toggle('dropped');
+
+		});
+	</script>
+</body>
+</html>
+
+
