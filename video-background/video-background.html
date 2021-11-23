@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video Background - By Kyle Sicotte</title>
+</head>
+<body>
+	<!--
+
+	Hey you!
+
+	I'd like to thank you for downloading my content. It really means a lot to me!
+	Hope you enjoy it. If you need any help working with this code, or have any suggestions for improvements or future code,
+	feel free to contact me at kylesicotte.ca.
+
+	Cheers,
+
+	- Kyle Sicotte
+
+	 -->
+	<style type="text/css">
+		/* MAIN STYLING */
+		body {
+			margin: 0;
+		}
+		.cover {
+			width: 100%;
+			height: 100vh;
+			background-color: #44044Cc5;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			z-index: 1;
+		}
+		.cover div {
+			padding: 30px;
+		}
+		h1 {
+			font-family: sans-serif;
+			color: #fff;
+			font-size: 5.5rem;
+			margin: 0 auto 20px;
+			text-align: center;
+		}
+		p {
+			font-size: 2rem;
+			max-width: 32rem;
+			color: #fff;
+			margin: 0 auto;
+		}
+		video {
+		  object-fit: cover;
+		  width: 100vw;
+		  height: 100vh;
+		  position: fixed;
+		  z-index: -1;
+		  top: 0;
+		  left: 0;
+		}
+
+		/* MEDIA QUERRIES */
+		@media screen and (min-width: 960px) {
+		  p {
+			font-size: 1.2rem;
+		  }
+		}
+	</style>
+
+	<div>
+		<div class="cover">
+			<div>
+				<h1>Big ol' Header</h1>
+				<p>Some basic filler text made to help this website's user understand what it's about. If you actually read all this text, congrations on wasting three whole seconds of your very precious and limited life. If that made you sad, don't worry becuase you can take pride in that amount of time it took me to write this dumb blurb.</p>
+			</div>
+		</div>
+		<video playsinline autoplay muted loop>
+		  <source src="videos/tom-fisk.mp4" type="video/mp4">
+		  	Your browser does not support the video tag.
+		</video>
+	</div>
+	
+</body>
+</html>
