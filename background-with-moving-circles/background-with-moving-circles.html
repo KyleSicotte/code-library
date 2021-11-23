@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Background with Moving Circles - By Kyle Sicotte</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+	<!--
+
+	Hey you!
+
+	I'd like to thank you for downloading my content. It really means a lot to me!
+	Hope you enjoy it. If you need any help working with this code, or have any suggestions for improvements or future code,
+	feel free to contact me at kylesicotte.ca.
+
+	Cheers,
+
+	- Kyle Sicotte
+
+	 -->
+
+	<style type="text/css">
+		/* ANIMATIONS */
+		/* For Circle Pathing */
+		/* 
+		For 0% and 1%, be sure to set the translateY to the size of your largest circle. 
+		For 99% and 100%, be sure to set the translateY to the height of your container.
+		*/
+		@keyframes circle {
+		  0%   {background-color: transparent; transform: translateY(-6rem);}
+		  1%   {background-color: #fff3; transform: translateY(-6rem);}
+		  99%  {background-color: #fff3; transform: translateY(80vh);}
+		  100% {background-color: transparent; transform: translateY(80vh);}
+		}
+		/* For Moving Background */
+		@keyframes background {
+		    0%{background-position:0% 50%}
+		    50%{background-position:100% 50%}
+		    100%{background-position:0% 50%}
+		}
+
+		/* MAIN STYLING */
+		body {
+			margin: 0;
+		}
+		.filler {
+			background-color: #aaa;
+			padding: 100px;
+		}
+		.filler p {
+			font-size: 1.2rem;
+			font-family: sans-serif;
+			color: #fff;
+			text-align: center;
+		}
+		.textbox {
+			position: static;
+			margin: auto;
+			text-align: center;
+			margin: auto;
+			width: 90%;
+		}
+		.textbox h2 {
+			margin: 0 0 20px 0;
+			font-size: 4.2rem;
+			font-family: sans-serif;
+			font-weight: 900;
+			color: #fff;
+			text-shadow: -5px 5px #333;
+		}
+		.textbox p {
+			color: #fff;
+			font-size: 1.2rem;
+			font-family: serif;
+			background-color: #3337;
+			padding: 40px;
+			border-radius: 40px;
+			box-shadow: -6px 6px 8px #333;
+		}
+		.container {
+			/* Don't forget to change the circle animation if you change the height */
+			height: 80vh;
+			position: relative;
+			display: flex;
+			z-index: -100;
+			box-sizing: border-box;
+			padding: 3rem;
+
+			/* CSS Gradient made with https://cssgradient.io */
+			background: rgb(249,213,0);
+			background: -moz-linear-gradient(72deg, rgba(249,213,0,1) 0%, rgba(255,244,174,1) 100%);
+			background: -webkit-linear-gradient(72deg, rgba(249,213,0,1) 0%, rgba(255,244,174,1) 100%);
+			background: linear-gradient(72deg, rgba(249,213,0,1) 0%, rgba(255,244,174,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f9d500",endColorstr="#fff4ae",GradientType=1);
+
+			/* If you want a moving background, use the code below */
+			/*
+			background-size: 400% 400%;
+		    -webkit-animation: background 45s ease infinite;
+		    -moz-animation: background 45s ease infinite;
+		    animation: background 45s ease infinite;
+		    */
+		}
+
+		/* CIRCLES */
+		.circle {
+			background-color: transparent;
+			height: 100px;
+			width: 100px;
+			border-radius: 1000px;
+			position: absolute;
+			z-index: -10;
+			overflow: hidden;
+			animation-name: circle;
+			animation-duration: 30s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear; 
+		}
+		.one {
+			animation-delay: 14s;
+			animation-duration: 14s;
+			margin-left: -3vw;
+			width: 3.2rem;
+			height: 3.2rem;
+		}
+		.two {
+			animation-delay: 2s;
+			animation-duration: 17s;
+			margin-left: 62vw;
+			width: 2.6rem;
+			height: 2.6rem;
+		}
+		.three {
+			animation-delay: 7s;
+			animation-duration: 6s;
+			margin-left: 70vw;
+			width: 1.6rem;
+			height: 1.6rem;
+		}
+		.four {
+			animation-delay: 4.6s;
+			animation-duration: 13s;
+			margin-left: 11vw;
+			width: 4.6rem;
+			height: 4.6rem;
+		}
+		.five {
+			animation-delay: 1.3s;
+			animation-duration: 46s;
+			margin-left: 34vw;
+			width: 120px;
+			height: 120px;
+		}
+		.six {
+			animation-delay: 11.4s;
+			animation-duration: 41s;
+			margin-left: 56vw;
+			width: 70px;
+			height: 70px;
+		}
+		.seven {
+			animation-delay: 9.1s;
+			animation-duration: 29s;
+			margin-left: 48vw;
+			width: 4.7rem;
+			height: 4.7rem;
+		}
+		.eight {
+			animation-delay: 4.8s;
+			animation-duration: 41s;
+			margin-left: 75vw;
+			width: 2rem;
+			height: 2rem;
+		}
+		.nine {
+			animation-delay: 1.9s;
+			animation-duration: 11s;
+			margin-left: 68vw;
+			width: 4.2rem;
+			height: 4.2rem;
+		}
+		.ten {
+			animation-delay: 15s;
+			animation-duration: 7s;
+			margin-left: 33vw;
+			width: 3rem;
+			height: 3rem;
+		}
+		.eleven {
+			animation-delay: 6s;
+			animation-duration: 29s;
+			margin-left: 6vw;
+			width: 111px;
+			height: 111px;
+		}
+		.twelve {
+			animation-delay: 10s;
+			animation-duration: 16s;
+			margin-left: 21vw;
+			width: 116px;
+			height: 116px;
+		}
+		.thirteen {
+			animation-delay: 3s;
+			animation-duration: 7s;
+			margin-left: 39vw;
+			width: 4rem;
+			height: 4rem;
+		}
+		.fourteen {
+			animation-delay: 6s;
+			animation-duration: 14s;
+			margin-left: 9vw;
+			width: 60px;
+			height: 60px;
+		}
+		.fifteen {
+			animation-delay: 2s;
+			animation-duration: 16s;
+			margin-left: 17vw;
+			width: 70px;
+			height: 70px;
+		}
+
+		/* MEDIA QUERRIES */
+		@media screen and (min-width: 960px) {
+		  .textbox p {
+			width: 60%;
+			margin: auto;
+		  }
+		}
+
+	</style>
+	<div class="filler">
+		<p>This is the top div</p>
+	</div>
+	<div class="container">
+		<div class="circle one"></div>
+		<div class="circle two"></div>
+		<div class="circle three"></div>
+		<div class="circle four"></div>
+		<div class="circle five"></div>
+		<div class="circle six"></div>
+		<div class="circle seven"></div>
+		<div class="circle eight"></div>
+		<div class="circle nine"></div>
+		<div class="circle ten"></div>
+		<div class="circle eleven"></div>
+		<div class="circle twelve"></div>
+		<div class="circle thirteen"></div>
+		<div class="circle fourteen"></div>
+		<div class="circle fifteen"></div>
+
+		<div class="textbox">
+			<h2>Header</h2>
+			<p>A short, but sweet message to let people know something. Maybe it is very important. Maybe it isn't. Who knows.</p>
+		</div>
+	</div>
+	<div class="filler">
+		<p>This is the bottom div</p>
+	</div>
+</body>
+</html>
